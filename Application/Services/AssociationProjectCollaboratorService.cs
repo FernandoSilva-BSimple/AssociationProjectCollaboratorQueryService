@@ -28,11 +28,9 @@ public class AssociationProjectCollaboratorService
         return Result<AssociationProjectCollaboratorDTO>.Success(result);
     }
 
-    public async Task CreateWithoutValidations(Guid id, Guid projectId, Guid collaboratorId, PeriodDate periodDate)
+    public async Task Create(Guid id, Guid projectId, Guid collaboratorId, PeriodDate periodDate)
     {
-        IAssociationProjectCollaborator assPC;
-
-        assPC = _factory.Create(id, projectId, collaboratorId, periodDate);
+        IAssociationProjectCollaborator assPC = _factory.Create(id, projectId, collaboratorId, periodDate);
         await _assocRepository.AddAsync(assPC);
     }
 

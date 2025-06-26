@@ -13,6 +13,6 @@ public class AssociationProjectCollaboratorCreatedConsumer : IConsumer<Associati
     public async Task Consume(ConsumeContext<AssociationProjectCollaboratorCreated> context)
     {
         var message = context.Message;
-        await _assocService.CreateWithoutValidations(message.id, message.projectId, message.collaboratorId, message.periodDate);
+        await _assocService.Create(message.id, message.projectId, message.collaboratorId, message.periodDate);
     }
 }
