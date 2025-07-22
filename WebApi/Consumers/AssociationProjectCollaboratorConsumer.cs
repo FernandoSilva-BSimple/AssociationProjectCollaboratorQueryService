@@ -3,9 +3,9 @@ using Domain.Messages;
 
 public class AssociationProjectCollaboratorCreatedConsumer : IConsumer<AssociationProjectCollaboratorCreatedMessage>
 {
-    private readonly AssociationProjectCollaboratorService _assocService;
+    private readonly IAssociationProjectCollaboratorService _assocService;
 
-    public AssociationProjectCollaboratorCreatedConsumer(AssociationProjectCollaboratorService assPCService)
+    public AssociationProjectCollaboratorCreatedConsumer(IAssociationProjectCollaboratorService assPCService)
     {
         _assocService = assPCService;
     }
