@@ -1,0 +1,6 @@
+using Application;
+
+public interface IAssociationProjectCollaboratorService
+{
+    Task<Result<CreatedAssociationProjectCollaboratorFromMessageDTO>> AddConsumedAssociationProjectCollaboratorAsync(CreateAssociationProjectCollaboratorFromMessageDTO dto);
+}

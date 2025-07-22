@@ -149,5 +149,4 @@ public class AssociationProjectCollaboratorRepositoryEF : GenericRepositoryEF<IA
 
         return result;
     }
-
 }
