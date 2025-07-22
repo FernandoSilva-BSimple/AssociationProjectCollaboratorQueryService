@@ -79,4 +79,26 @@ public class AssociationProjectCollaboratorService : IAssociationProjectCollabor
 
         return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Success(result);
     }
+
+    public async Task<Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>> GetAllWithDetailsByProjectIdAsync(Guid projectId)
+    {
+        var associations = await _assocRepository.FindAllByProjectAsync(projectId);
+
+        var result = new List<AssociationProjectCollaboratorDetailsDTO>();
+
+        foreach (var association in associations)
+        {
+            var collaborator = await _collaboratorRepository.GetByIdAsync(association.CollaboratorId);
+            if (collaborator == null) return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Failure(Error.NotFound("Collaborator not found."));
+
+            var project = await _projectRepository.GetByIdAsync(association.ProjectId);
+            if (project == null) return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Failure(Error.NotFound("Project not found."));
+
+            var user = await _userRepository.GetByIdAsync(collaborator.UserId);
+            if (user == null) return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Failure(Error.NotFound("User not found."));
+
+        }
+
+        return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Success(result);
+    }
 }

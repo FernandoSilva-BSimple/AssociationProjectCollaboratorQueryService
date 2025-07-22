@@ -20,4 +20,25 @@ public class AssociationProjectCollaboratorController : ControllerBase
 
         return assoc.ToActionResult();
     }
+
+    [HttpGet("{id}/details")]
+    public async Task<ActionResult<AssociationProjectCollaboratorDetailsDTO>> GetAssociationDetailsAsync(Guid id)
+    {
+        var result = await _service.GetAssociationDetailsAsync(id);
+        return result.ToActionResult();
+    }
+
+    [HttpGet("collaborator/{collaboratorId}/details")]
+    public async Task<ActionResult<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>> GetAllWithDetailsByCollaboratorIdAsync(Guid collaboratorId)
+    {
+        var result = await _service.GetAllWithDetailsByCollaboratorIdAsync(collaboratorId);
+        return result.ToActionResult();
+    }
+
+    [HttpGet("project/{projectId}/details")]
+    public async Task<ActionResult<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>> GetAllWithDetailsByProjectIdAsync(Guid projectId)
+    {
+        var result = await _service.GetAllWithDetailsByProjectIdAsync(projectId);
+        return result.ToActionResult();
+    }
 }
