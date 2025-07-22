@@ -15,11 +15,14 @@ public class AssociationProjectCollaboratorService : IAssociationProjectCollabor
     private readonly IUserRepository _userRepository;
     private readonly IMapper _mapper;
 
-    public AssociationProjectCollaboratorService(IAssociationProjectCollaboratorRepository assocRepository, IAssociationProjectCollaboratorFactory factory, IMapper mapper)
+    public AssociationProjectCollaboratorService(IAssociationProjectCollaboratorRepository associationProjectCollaboratorRepository, IAssociationProjectCollaboratorFactory factory, ICollaboratorRepository collaboratorRepository, IProjectRepository projectRepository, IUserRepository userRepository, IMapper mapper)
     {
-        _assocRepository = assocRepository;
-        _mapper = mapper;
+        _assocRepository = associationProjectCollaboratorRepository;
         _factory = factory;
+        _collaboratorRepository = collaboratorRepository;
+        _projectRepository = projectRepository;
+        _userRepository = userRepository;
+        _mapper = mapper;
     }
 
     public async Task<Result<AssociationProjectCollaboratorDTO>> GetByIdAsync(Guid id)

@@ -6,9 +6,9 @@ using WebApi;
 [Route("api/associationsPC")]
 public class AssociationProjectCollaboratorController : ControllerBase
 {
-    private readonly AssociationProjectCollaboratorService _service;
+    private readonly IAssociationProjectCollaboratorService _service;
 
-    public AssociationProjectCollaboratorController(AssociationProjectCollaboratorService service)
+    public AssociationProjectCollaboratorController(IAssociationProjectCollaboratorService service)
     {
         _service = service;
     }
