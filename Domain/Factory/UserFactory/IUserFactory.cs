@@ -1,4 +1,5 @@
 using Domain.Interfaces;
+using Domain.Models;
 using Domain.Visitors;
 
 namespace Domain.Factory.UserFactory;
@@ -6,5 +7,5 @@ namespace Domain.Factory.UserFactory;
 public interface IUserFactory
 {
     IUser Create(Guid id, string names, string email);
-    IUser Create(IUserVisitor visitor);
+    User Create(IUserVisitor visitor);
 }

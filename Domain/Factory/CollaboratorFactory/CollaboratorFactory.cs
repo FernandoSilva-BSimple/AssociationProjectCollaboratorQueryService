@@ -12,7 +12,7 @@ namespace Domain.Factory.CollaboratorFactory
             return new Collaborator(id, userId, periodDateTime);
         }
 
-        public ICollaborator Create(ICollaboratorVisitor visitor)
+        public Collaborator Create(ICollaboratorVisitor visitor)
         {
             return new Collaborator(visitor.Id, visitor.UserId, visitor.PeriodDateTime);
         }

@@ -12,7 +12,7 @@ namespace Domain.Factory.ProjectFactory
             return new Project(id, title, acronym, periodDate);
         }
 
-        public IProject Create(IProjectVisitor visitor)
+        public Project Create(IProjectVisitor visitor)
         {
             return new Project(visitor.Id, visitor.Title, visitor.Acronym, visitor.PeriodDate);
         }

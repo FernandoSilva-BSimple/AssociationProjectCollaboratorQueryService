@@ -100,6 +100,16 @@ public class AssociationProjectCollaboratorService : IAssociationProjectCollabor
             var user = await _userRepository.GetByIdAsync(collaborator.UserId);
             if (user == null) return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Failure(Error.NotFound("User not found."));
 
+            result.Add(new AssociationProjectCollaboratorDetailsDTO
+            {
+                CollaboratorId = collaborator.Id,
+                CollaboratorName = user.Names,
+                CollaboratorEmail = user.Email,
+                ProjectId = project.Id,
+                ProjectTitle = project.Title,
+                ProjectAcronym = project.Acronym,
+                PeriodDate = association.PeriodDate
+            });
         }
 
         return Result<IEnumerable<AssociationProjectCollaboratorDetailsDTO>>.Success(result);

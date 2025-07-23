@@ -12,7 +12,7 @@ namespace Domain.Factory.UserFactory
             return new User(id, names, email);
         }
 
-        public IUser Create(IUserVisitor visitor)
+        public User Create(IUserVisitor visitor)
         {
             return new User(visitor.Id, visitor.Names, visitor.Email);
         }
