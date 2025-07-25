@@ -44,7 +44,6 @@ builder.Services.AddTransient<IProjectFactory, ProjectFactory>();
 builder.Services.AddTransient<ICollaboratorFactory, CollaboratorFactory>();
 
 
-// MassTransit - Only the consumer
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<AssociationProjectCollaboratorCreatedConsumer>();
