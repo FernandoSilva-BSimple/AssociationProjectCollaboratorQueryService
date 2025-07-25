@@ -5,5 +5,6 @@ using Domain.Visitors;
 
 public interface IUserRepository : IGenericRepositoryEF<IUser, User, IUserVisitor>
 {
+    Task UpdateAsync(IUser user);
 
 }

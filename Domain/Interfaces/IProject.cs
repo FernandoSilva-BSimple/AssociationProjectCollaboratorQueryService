@@ -9,5 +9,8 @@ namespace Domain.Interfaces
         string Title { get; }
         string Acronym { get; }
         PeriodDate PeriodDate { get; }
+        void UpdateTitle(string title);
+        void UpdateAcronym(string acronym);
+        void UpdatePeriodDate(PeriodDate periodDate);
     }
 }

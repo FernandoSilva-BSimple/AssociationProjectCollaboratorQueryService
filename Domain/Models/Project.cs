@@ -17,4 +17,20 @@ public class Project : IProject
         PeriodDate = periodDate;
     }
 
+    public void UpdateTitle(string title)
+    {
+        Title = title;
+    }
+
+    public void UpdateAcronym(string acronym)
+    {
+        Acronym = acronym;
+    }
+
+    public void UpdatePeriodDate(PeriodDate periodDate)
+    {
+        PeriodDate = periodDate;
+    }
+
+
 }

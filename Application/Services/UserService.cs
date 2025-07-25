@@ -1,4 +1,5 @@
 using Application.DTO;
+using Application.DTO.User;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Factory.UserFactory;
@@ -27,5 +28,19 @@ public class UserService : IUserService
         var userCreated = await _userRepository.AddAsync(newUser);
         var userDTOCreated = _mapper.Map<CreatedUserFromMessageDTO>(userCreated);
         return Result<CreatedUserFromMessageDTO>.Success(userDTOCreated);
+    }
+
+    public async Task<Result> UpdateConsumedUserAsync(UpdateUserFromMessageDTO dto)
+    {
+        var existingUser = await _userRepository.GetByIdAsync(dto.Id);
+        if (existingUser == null)
+            return Result.Failure(Error.BadRequest("User not found"));
+
+        existingUser.UpdateNames(dto.Names);
+        existingUser.UpdateEmail(dto.Email);
+
+        await _userRepository.UpdateAsync(existingUser);
+
+        return Result.Success();
     }
 }

@@ -15,4 +15,9 @@ public class Collaborator : ICollaborator
         PeriodDateTime = periodDateTime;
     }
 
+    public void UpdatePeriod(PeriodDateTime newPeriod)
+    {
+        PeriodDateTime = newPeriod;
+    }
+
 }

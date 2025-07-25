@@ -30,4 +30,20 @@ public class CollaboratorService : ICollaboratorService
         var collaboratorDTOCreated = _mapper.Map<CreatedCollaboratorFromMessageDTO>(collaboratorCreated);
         return Result<CreatedCollaboratorFromMessageDTO>.Success(collaboratorDTOCreated);
     }
+
+    public async Task<Result> UpdateConsumedCollaboratorAsync(UpdateCollaboratorFromMessageDTO dto)
+    {
+        var existing = await _collaboratorRepository.GetByIdAsync(dto.Id);
+        if (existing is null)
+        {
+            return Result.Failure(Error.BadRequest("Collaborator not found."));
+        }
+
+        existing.UpdatePeriod(dto.PeriodDateTime);
+
+        await _collaboratorRepository.UpdateAsync(existing);
+
+        return Result.Success();
+    }
+
 }

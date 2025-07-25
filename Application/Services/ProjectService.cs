@@ -1,4 +1,5 @@
 using Application.DTO;
+using Application.DTO.Project;
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Factory.ProjectFactory;
@@ -29,4 +30,20 @@ public class ProjectService : IProjectService
         var projectDTOCreated = _mapper.Map<CreatedProjectFromMessageDTO>(projectCreated);
         return Result<CreatedProjectFromMessageDTO>.Success(projectDTOCreated);
     }
+
+    public async Task<Result> UpdateConsumedProjectAsync(UpdateProjectFromMessageDTO dto)
+    {
+        var existingProject = await _projectRepository.GetByIdAsync(dto.Id);
+        if (existingProject == null)
+            return Result.Failure(Error.BadRequest("Project not found"));
+
+        existingProject.UpdateTitle(dto.Title);
+        existingProject.UpdateAcronym(dto.Acronym);
+        existingProject.UpdatePeriodDate(dto.PeriodDate);
+
+        await _projectRepository.UpdateAsync(existingProject);
+
+        return Result.Success();
+    }
+
 }

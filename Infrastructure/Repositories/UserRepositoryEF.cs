@@ -35,4 +35,15 @@ public class UserRepositoryEF : GenericRepositoryEF<IUser, User, UserDataModel>,
         return _mapper.Map<UserDataModel, User>(userDM);
     }
 
+    public async Task UpdateAsync(IUser user)
+    {
+        var existing = await _context.Set<UserDataModel>().FirstOrDefaultAsync(u => u.Id == user.Id);
+        if (existing == null) return;
+
+        existing.Names = user.Names;
+        existing.Email = user.Email;
+
+        await _context.SaveChangesAsync();
+    }
+
 }

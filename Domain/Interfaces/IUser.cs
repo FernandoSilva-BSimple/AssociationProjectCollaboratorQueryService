@@ -8,5 +8,8 @@ namespace Domain.Interfaces
         Guid Id { get; }
         string Names { get; }
         string Email { get; }
+        void UpdateNames(string names);
+        void UpdateEmail(string names);
+
     }
 }

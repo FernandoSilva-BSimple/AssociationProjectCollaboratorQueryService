@@ -8,5 +8,7 @@ namespace Domain.Interfaces
         Guid Id { get; }
         Guid UserId { get; }
         PeriodDateTime PeriodDateTime { get; }
+        void UpdatePeriod(PeriodDateTime newPeriod);
+
     }
 }

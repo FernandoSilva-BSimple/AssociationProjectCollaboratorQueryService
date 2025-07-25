@@ -15,4 +15,15 @@ public class User : IUser
         Email = email;
     }
 
+    public void UpdateNames(string names)
+    {
+        Names = names;
+    }
+
+    public void UpdateEmail(string email)
+    {
+        Email = email;
+    }
+
+
 }
