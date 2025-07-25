@@ -51,6 +51,10 @@ builder.Services.AddMassTransit(x =>
     x.AddConsumer<ProjectCreatedConsumer>();
     x.AddConsumer<CollaboratorCreatedConsumer>();
     x.AddConsumer<UserCreatedConsumer>();
+    x.AddConsumer<CollaboratorUpdatedConsumer>();
+    x.AddConsumer<UserUpdatedConsumer>();
+    x.AddConsumer<ProjectUpdatedConsumer>();
+
 
 
     x.UsingRabbitMq((context, cfg) =>
