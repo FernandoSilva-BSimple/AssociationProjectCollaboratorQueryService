@@ -5,8 +5,6 @@ using Domain.Factory.CollaboratorFactory;
 using Domain.Factory.ProjectFactory;
 using Domain.Factory.UserFactory;
 using Domain.IRepository;
-using Domain.Models;
-using Infrastructure;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
 using InterfaceAdapters.Consumers;
@@ -36,12 +34,10 @@ builder.Services.AddTransient<IProjectRepository, ProjectRepositoryEF>();
 builder.Services.AddTransient<ICollaboratorRepository, CollaboratorRepositoryEF>();
 
 // AutoMapper
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.AddProfile<DataModelMappingProfile>();
-
-    cfg.CreateMap<AssociationProjectCollaborator, CreatedAssociationProjectCollaboratorFromMessageDTO>();
-});
+builder.Services.AddAutoMapper(
+    typeof(Infrastructure.DataModelMappingProfile),
+    typeof(Application.ApplicationMappingProfile)
+);
 builder.Services.AddTransient<IAssociationProjectCollaboratorFactory, AssociationProjectCollaboratorFactory>();
 builder.Services.AddTransient<IUserFactory, UserFactory>();
 builder.Services.AddTransient<IProjectFactory, ProjectFactory>();
