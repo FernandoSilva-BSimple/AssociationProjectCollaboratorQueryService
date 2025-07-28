@@ -34,12 +34,11 @@ public class AssociationProjectCollaboratorService : IAssociationProjectCollabor
         return Result<AssociationProjectCollaboratorDTO>.Success(result);
     }
 
-    public async Task<Result<CreatedAssociationProjectCollaboratorFromMessageDTO>> AddConsumedAssociationProjectCollaboratorAsync(CreateAssociationProjectCollaboratorFromMessageDTO dto)
+    public async Task<Result<CreateAssociationProjectCollaboratorFromMessageDTO>> AddConsumedAssociationProjectCollaboratorAsync(CreateAssociationProjectCollaboratorFromMessageDTO dto)
     {
         var assPC = _factory.Create(dto.Id, dto.ProjectId, dto.CollaboratorId, dto.PeriodDate);
-        var created = await _assocRepository.AddAsync(assPC);
-        var resultDTO = _mapper.Map<CreatedAssociationProjectCollaboratorFromMessageDTO>(created);
-        return Result<CreatedAssociationProjectCollaboratorFromMessageDTO>.Success(resultDTO);
+        await _assocRepository.AddAsync(assPC);
+        return Result<CreateAssociationProjectCollaboratorFromMessageDTO>.Success(dto);
     }
 
     public async Task<Result<AssociationProjectCollaboratorDetailsDTO>> GetAssociationDetailsAsync(Guid id)
